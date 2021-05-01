@@ -11,22 +11,22 @@ source:
   sha256: 06dda546b3429f865d22045c0ac49743e3eb8675740e24c264358b974bf87b8e
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv
+  noarch: python
 
 requirements:
   host:
     - pip
-    - python
+    - python >=3.6
   run:
     - chemdataextractor
-    - sortedcontainers  # only required until pdfminer.six is updated
     - matplotlib-base ==2.2.4
     - numpy >=1.19
     - py-opencv >=4.2.0.32
     - pandas
     - pytesseract ==0.3.3
-    - python
+    - python >=3.6
     - rdfpy >=1.0.0
     - scikit-image
     - pytorch
