@@ -7,18 +7,18 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/imagedataextractor-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/imagedataextractor-{{ version }}.tar.gz
   sha256: 06dda546b3429f865d22045c0ac49743e3eb8675740e24c264358b974bf87b8e
 
 build:
-  number: 2
+  number: 3
   script: {{ PYTHON }} -m pip install . -vv
   noarch: python
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - chemdataextractor
     - matplotlib-base ==2.2.4
@@ -26,12 +26,14 @@ requirements:
     - py-opencv >=4.2.0.32
     - pandas
     - pytesseract ==0.3.3
-    - python >=3.6
+    - python >={{ python_min }}
     - rdfpy >=1.0.0
     - scikit-image
     - pytorch
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - imagedataextractor
     - imagedataextractor.analysis
